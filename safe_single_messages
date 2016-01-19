@@ -6,6 +6,7 @@
 % 5. A -> B: {H(Nb,B,PMS)}inv(Ka)	optional certificate verify message
 % 6. A -> B: {Finished}Keygen(A, Na, Nb, M) Finished = H(M.A.B.Na.Nb.Pa.Sid)
 % 7. B -> A: {Finished}Keygen(B, Na, Nb, M)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 role alice(
 	A, B : agent,  
@@ -63,7 +64,7 @@ played_by A def=
 
 end role
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 role bob(
 	A, B : agent,
@@ -107,7 +108,7 @@ played_by B def=
 
 end role
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 role session(
 	A,B: agent,
@@ -123,7 +124,7 @@ def=
 
 end role
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 role environment()
 def=
@@ -146,18 +147,16 @@ def=
 
 end role
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 goal
 
-  secrecy_of secrecyClientK,secrecyServerK  % Addresses G7
-  %Alice authenticates Bob on bob_alice_na_nb
-  authentication_on bob_alice_na_nb  % Addresses G1, G2, G3, G7, G10
-  %Bob authenticates Alice on alice_bob_na_nb
-  authentication_on alice_bob_na_nb  % Addresses G1, G2, G3, G7, G10
+  secrecy_of secrecyClientK,secrecyServerK
+  authentication_on bob_alice_na_nb
+  authentication_on alice_bob_na_nb
 
 end goal
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 environment()
