@@ -47,11 +47,10 @@ played_by A def=
               		{H(Nb'.B.PMS')}_(inv(Ka)). %5. A -> B: {H(Nb,B,PMS)}inv(Ka)
               		{Finished'}_ClientServerKey') % 6. A -> B: {Finished}Keygen(Na, Nb, M) 
        		   /\ witness(A,B,bob_alice_na_nb,Na.Nb')
-		   /\ request(A,B,alice_bob_kb,Kb')
-		   /\ secret(ClientServerKey,secrecyClientServerK,{A,B})
 
    4.  State = 4   /\ RCV({Finished}_ClientServerKey) =|> % 7. B -> A: {Finished}Keygen(Na, Nb, M)
        State' := 6 /\ request(A,B,alice_bob_na_nb,Na.Nb)
+		   /\ secret(ClientServerKey,secrecyClientServerK,{A,B})
        		   
 
 end role
@@ -120,7 +119,7 @@ def=
 	a, b            : agent,
         h, prf, keygen  : hash_func
 
-   intruder_knowledge = { a, b, ka, kb, ks, ki, inv(ki), {i.ki}_(inv(ks)) }  
+   intruder_knowledge = { a, b, ka, kb, ks, ki, inv(ki), {i.ki}_(inv(ks)), h, prf, keygen }  
 
    composition
         session(a,b,ka,kb,ks,h,prf,keygen)
