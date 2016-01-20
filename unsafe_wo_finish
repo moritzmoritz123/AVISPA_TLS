@@ -114,7 +114,7 @@ def=
 	a, b            : agent,
         h, prf, keygen  : hash_func
 
-   intruder_knowledge = { a, b, ka, kb, ks, ki, inv(ki), {i.ki}_(inv(ks)) }  
+   intruder_knowledge = { a, b, ka, kb, ks, ki, inv(ki), {i.ki}_(inv(ks)), h, prf, keygen }  
 
    composition
         session(a,b,ka,kb,ks,h,prf,keygen)
