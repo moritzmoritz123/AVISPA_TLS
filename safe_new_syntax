@@ -48,12 +48,11 @@ played_by A def=
               		{H(Nb'.B.PMS')}_(inv(Ka)). %5. A -> B: {H(Nb,B,PMS)}inv(Ka)
               		{Finished'}_ClientK') % 6. A -> B: {Finished}Keygen(A, Na, Nb, M) 
        		   /\ witness(A,B,bob_alice_na_nb,Na.Nb')
-		   /\ request(A,B,alice_bob_pkb,Kb')
-       		   /\ secret(ClientK',secrecyClientK,{A,B})
-       		   /\ secret(ServerK',secrecyServerK,{A,B})
 
    4.  State = 4   /\ RCV({Finished}_ServerK) =|> % 7. B -> A: {Finished}Keygen(B, Na, Nb, M)
        State' := 6 /\ request(A,B,alice_bob_na_nb,Na.Nb)
+       		   /\ secret(ClientK,secrecyClientK,{A,B})
+       		   /\ secret(ServerK,secrecyServerK,{A,B})
 
 end role
 
@@ -80,7 +79,6 @@ played_by B def=
        State' := 3 /\ Nb' := new()
        		   /\ SND(Nb'.Sid'.Pa'.{B.Kb}_(inv(Ks))) % 1. B -> A: Nb, Sid, Pb AND 2. B -> A: {B, Kb}inv(Ks)
        		   /\ witness(B,A,alice_bob_na_nb,Na'.Nb')
-		   /\ witness(B,A,alice_bob_pkb,Kb)
 
    3.  State = 3   /\ RCV({A.Ka'}_(inv(Ks)). % 3. A -> B: {A, Ka}inv(Ks)
 			{PMS'}_Kb. % 4. A -> B: {PMS}Kb
@@ -123,7 +121,7 @@ def=
 	a, b            : agent,
         h, prf, keygen  : hash_func
 
-   intruder_knowledge = { a, b, ka, kb, ks, ki, inv(ki), {i.ki}_(inv(ks)) }  
+   intruder_knowledge = { a, b, ka, kb, ks, ki, inv(ki), {i.ki}_(inv(ks)), h, prf, keygen }  
 
    composition
         session(a,b,ka,kb,ks,h,prf,keygen)
@@ -139,7 +137,6 @@ goal
   secrecy_of secrecyClientK,secrecyServerK
   authentication_on alice_bob_na_nb
   authentication_on bob_alice_na_nb
-  authentication_on alice_bob_kb %check for valid kb
 
 end goal
 
