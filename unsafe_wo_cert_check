@@ -37,7 +37,7 @@ played_by A def=
        		   /\ Pa' := new()
        		   /\ SND(A.Na'.Sid'.Pa') % 0. A -> B: A, Na, Sid, Pa
 
-   2.  State = 2   /\ RCV(Nb'.Sid.Pa.B.Kb') =|> % 1. B -> A: Nb, Sid, Pb AND 2. B -> A: {B, Kb}inv(Ks)
+   2.  State = 2   /\ RCV(Nb'.Sid.Pa.B.Kb') =|> % 1. B -> A: Nb, Sid, Pb AND 2. B -> A: B, Kb
        State' := 4 /\ PMS' := new()
        		   /\ M' := PRF(PMS'.Na.Nb')
        		   /\ Finished' := H(M'.A.B.Na.Pa.Sid)
